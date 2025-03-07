@@ -4,7 +4,7 @@ Helpful script for FileMaker development. It shows you details of the layout in 
 2025-03-08 Prospect KY USA, Brian Ginn — Helpful script for FileMaker development. It shows you details of the layout in a UNIX style report (once added to "Watch" in Data Viewer). See a sample report for the classic template Contacts. It is a standalone script you copy/paste into your solution. Run it and check the "Data Viewer" and add to "Watch" for pretty format. (copy sample below into a text editor with monospacing to see it as it would appear in the real Data Viewer as it's not wide enough here to be clearly read as it otherwise would be.)
 
 Sample report in Data Viewer once moved to "Watch" so it can be viewed monospaced:
-
+```
 /*
 'Add to Watch' for Unix-formatted rpt. Hold shift key while running script to clear globals.
 Clear $expert in script setting to hide introductory instructions and helpful information.
@@ -153,3 +153,4 @@ Script: DDR_Layout_Fields
 Set $expert in setting to toggle helper information.
 Hold shift key while running script to clear globals.
 */
+```
