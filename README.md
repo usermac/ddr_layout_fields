@@ -19,7 +19,7 @@ Clear $expert in script setting to hide introductory instructions and helpful in
 
 0 Total Record Count.
 
-19 Regular Fields found on layout.
+19 Regular Fields found on the visble layout and gray area to the right of the layout.
 
 FieldComment
 Addresses::Address Line 1        First line of the address
