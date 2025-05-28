@@ -4,6 +4,7 @@ Helpful script for FileMaker development. It shows you details of the layout in 
 2025-03-08 Prospect KY USA, Brian Ginn — Helpful script for FileMaker development. It shows you details of the layout in a UNIX style report (once added to "Watch" in Data Viewer). See a sample report for the classic template Contacts. It is a standalone script you copy/paste into your solution. Run it and check the "Data Viewer" and add to "Watch" for pretty format. (copy sample below into a text editor with monospacing to see it as it would appear in the real Data Viewer as it's not wide enough here to be clearly read as it otherwise would be.)
 
 A YouTube video is here without sound. https://youtu.be/E5d_2NZSQSA
+A YouTube video is here as a promo for 2025 [Full Access] conference. https://youtu.be/3SSDE0OTgA8
 
 Sample report in Data Viewer once moved to "Watch" so it can be viewed monospaced:
 ```
