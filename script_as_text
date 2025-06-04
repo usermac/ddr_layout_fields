@@ -13,6 +13,12 @@
  * If you find it useful, pay me for my work https://usermac.gumroad.com/l/DDR_Layout_Fields - Brian
  *
  * @HISTORY:
+ * Mofified: 2025-06-02 by Brian Ginn brian@brianginn.com - Updated the expert var comment toggle for clarity adding "Change this to anything greater than null/blank and you'll suppress help." - Brian
+ * Modified: 2025-06-01 by Brian Ginn brian@brianginn.com - Changed layout name from My_Lovely_Table to My_Lovely_Layout for proper wording. - Brian
+ * Modified: 2025-06-01 by Brian Ginn brian@brianginn.com - Added web viewer to GitHub home page on layout. - Brian
+ * Modified: 2025-06-01 by Brian Ginn brian@brianginn.com - Added ForeignKey field and made self relationship to better show report result instead of being blank due to only one TO. - Brian
+ * Modified: 2025-06-01 by Brian Ginn brian@brianginn.com - Made cosmetic changes to layout. - Brian
+ * Modified: 2025-05-28 by Brian Ginn brian@brianginn.com - Changed "found on layout." to "found on the visble layout and gray area to the right of the layout." for the found fields. - Brian
  * Modified: 2025-03-08 by Brian Ginn brian@brianginn.com - Added "+Value Lists" to FieldStyle head. - Brian
  * Modified: 2025-03-08 by Brian Ginn brian@brianginn.com - Changed name from ddr_this_layout_fields to "DDR_Layout_Fields" - Brian
  * Modified: 2025-03-08 by Brian Ginn brian@brianginn.com - Fix misspelling myself in How to Use and had Claude AI check grammar. - Brian
@@ -70,16 +76,17 @@
  * @NOTES:
  * To clear vars in Current Data Viewer window, run this script with the shift key.
  * This file works as of FileMaker v19.5.4
- */
+ * If you can't contact me using brian@brianginn.com, use usermac@mac.com or text me direct +1(502)550-0092 - Brian
+*/
 
  ➜🌎 
 # 
 Allow User Abort [ On ]
 # 
 # check if record is open. Exit if so.
-If [ Get(RecordOpenState) ≠ 0 // Record is open so exit. ] 
+If [ Get(RecordOpenState) ≠ 0 // Record is open so exit. ]
 	Beep
-	Exit Script [ Text Result: $null ] 
+	Exit Script [ Text Result: $null ]
 End If
 # 
 Set Error Capture [ On ]
@@ -87,292 +94,292 @@ Set Error Capture [ On ]
 Enter Browse Mode [ Pause: Off ]
 # 
 # clear vars
-Set Variable [ $report ; Value: "" ] 
-Set Variable [ $database ; Value: "" ] 
-Set Variable [ $layoutname ; Value: "" ] 
-Set Variable [ $tableoccurrence ; Value: "" ] 
-Set Variable [ $fieldlist ; Value: "" ] 
-Set Variable [ $field ; Value: "" ] 
-Set Variable [ $i ; Value: "" ] 
-Set Variable [ $fieldlistcount ; Value: "" ] 
-Set Variable [ $spacer ; Value: "" ] 
-Set Variable [ $spacermax ; Value: "" ] 
-Set Variable [ $spacermaxlength ; Value: "" ] 
-Set Variable [ $append ; Value: "" ] 
-Set Variable [ $definefieldtype ; Value: "" ] 
-Set Variable [ $definefieldstyle ; Value: "" ] 
-Set Variable [ $definefieldbounds ; Value: "" ] 
-Set Variable [ $scriptname ; Value: "" ] 
-Set Variable [ $padding ; Value: "" ] 
-Set Variable [ $$report ; Value: "" ] 
-Set Variable [ $seconds ; Value: "" ] 
-Set Variable [ $notice ; Value: "" ] 
-Set Variable [ $expert ; Value: "" ] 
-Set Variable [ $footer ; Value: "" ] 
-Set Variable [ $scriptname ; Value: "" ] 
-Set Variable [ $totalrecordcount ; Value: "" ] 
-Set Variable [ $howtouse ; Value: "" ] 
-Set Variable [ $tableoccurrencefield ; Value: "" ] 
-Set Variable [ $position ; Value: "" ] 
-Set Variable [ $fieldlist2 ; Value: "" ] 
-Set Variable [ $spacermax2 ; Value: "" ] 
-Set Variable [ $fieldlist3 ; Value: "" ] 
-Set Variable [ $spacermax3 ; Value: "" ] 
-Set Variable [ $tableoccurrencelength ; Value: "" ] 
-Set Variable [ $field2 ; Value: "" ] 
-Set Variable [ $field3 ; Value: "" ] 
-Set Variable [ $fieldlistto ; Value: "" ] 
-Set Variable [ $brian ; Value: "" ] 
-Set Variable [ $fieldlength2 ; Value: "" ] 
-Set Variable [ $fieldlength3 ; Value: "" ] 
+Set Variable [ $report ; Value: "" ]
+Set Variable [ $database ; Value: "" ]
+Set Variable [ $layoutname ; Value: "" ]
+Set Variable [ $tableoccurrence ; Value: "" ]
+Set Variable [ $fieldlist ; Value: "" ]
+Set Variable [ $field ; Value: "" ]
+Set Variable [ $i ; Value: "" ]
+Set Variable [ $fieldlistcount ; Value: "" ]
+Set Variable [ $spacer ; Value: "" ]
+Set Variable [ $spacermax ; Value: "" ]
+Set Variable [ $spacermaxlength ; Value: "" ]
+Set Variable [ $append ; Value: "" ]
+Set Variable [ $definefieldtype ; Value: "" ]
+Set Variable [ $definefieldstyle ; Value: "" ]
+Set Variable [ $definefieldbounds ; Value: "" ]
+Set Variable [ $scriptname ; Value: "" ]
+Set Variable [ $padding ; Value: "" ]
+Set Variable [ $$report ; Value: "" ]
+Set Variable [ $seconds ; Value: "" ]
+Set Variable [ $notice ; Value: "" ]
+Set Variable [ $expert ; Value: "" ]
+Set Variable [ $footer ; Value: "" ]
+Set Variable [ $scriptname ; Value: "" ]
+Set Variable [ $totalrecordcount ; Value: "" ]
+Set Variable [ $howtouse ; Value: "" ]
+Set Variable [ $tableoccurrencefield ; Value: "" ]
+Set Variable [ $position ; Value: "" ]
+Set Variable [ $fieldlist2 ; Value: "" ]
+Set Variable [ $spacermax2 ; Value: "" ]
+Set Variable [ $fieldlist3 ; Value: "" ]
+Set Variable [ $spacermax3 ; Value: "" ]
+Set Variable [ $tableoccurrencelength ; Value: "" ]
+Set Variable [ $field2 ; Value: "" ]
+Set Variable [ $field3 ; Value: "" ]
+Set Variable [ $fieldlistto ; Value: "" ]
+Set Variable [ $brian ; Value: "" ]
+Set Variable [ $fieldlength2 ; Value: "" ]
+Set Variable [ $fieldlength3 ; Value: "" ]
 # 
 # set vars
 # Set to blank to show informational text. Set to anything to suppress helpful information leaving just the facts (for experts familiar with output).
-Set Variable [ $expert ] 
+Set Variable [ $expert ]
 # 
 # capture script name (this script) for report
-Set Variable [ $scriptname ; Value: ¶ & "Script: " & Get (ScriptName) ] 
+Set Variable [ $scriptname ; Value: ¶ & "Script: " & Get (ScriptName) ]
 # 
 # capture the second this report is run for $$report[XX] var repetition [is the second]
-Set Variable [ $seconds ; Value: Seconds ( Get (CurrentTime ) ) ] 
+Set Variable [ $seconds ; Value: Seconds ( Get (CurrentTime ) ) ]
 # 
 # Help on/off with $expert
-If [ $expert = "" // don't show help such as what function settings are. ] 
-	Set Variable [ $notice ; Value: "'Add to Watch' for Unix-formatted rpt. Hold shift key while running script to clear globals." & ¶ & "Clear $expert in script setting to hide introductory instructions and helpful information." & ¶ ] 
+If [ $expert = "" // don't show help such as what function settings are. Change this to anything greater than null/blank and you'll suppress help. ]
+	Set Variable [ $notice ; Value: "'Add to Watch' for Unix-formatted rpt. Hold shift key while running script to clear globals." & ¶ & "Clear $expert in script setting to hide introductory instructions and helpful information." & ¶ ]
 	# 
 	# define FieldType
-	Set Variable [ $definefieldtype ; Value: ¶ & "__________________________________________________________ ¶FieldType function from Claris help as of version 19.5.4: ¶- The first value is either Standard, StoredCalc, Summary, UnstoredCalc, External(Secure), External(Open), or Global. ¶- The secon…" ] 
+	Set Variable [ $definefieldtype ; Value: ¶ & "__________________________________________________________ ¶FieldType function from Claris help as of version 19.5.4: ¶- The first value is either Standard, StoredCalc, Summary, UnstoredCalc, External(Secure), External(Open), or Global. ¶- The secon…" ]
 	# 
 	# define FieldStyle
-	Set Variable [ $definefieldstyle ; Value: ¶ & "FieldStyle function from Claris help as of version 19.5.4: ¶If the field has a value list associated with it, the FieldStyle function also returns the name of the value list. ¶- standard field returns Standard. ¶- standard field with - vertical scro…" ] 
+	Set Variable [ $definefieldstyle ; Value: ¶ & "FieldStyle function from Claris help as of version 19.5.4: ¶If the field has a value list associated with it, the FieldStyle function also returns the name of the value list. ¶- standard field returns Standard. ¶- standard field with - vertical scro…" ]
 	# 
 	# define FieldBounds
-	Set Variable [ $definefieldbounds ; Value: ¶ & "FieldBounds function from Claris help as of version 19.5.4: ¶Returns the location, in points, of each field boundary and the field's rotation in degrees. ¶" ] 
+	Set Variable [ $definefieldbounds ; Value: ¶ & "FieldBounds function from Claris help as of version 19.5.4: ¶Returns the location, in points, of each field boundary and the field's rotation in degrees. ¶" ]
 	# 
 	# How to Use
-	Set Variable [ $howtouse ; Value: ¶ & "How to use: ¶ Script is portable without dependencies. Copy into any solution and run. Add shift key when running to clear resulting vars. Clear the $expert var to suppress this extensive help text. It is under settings within the script. My workfl…" ] 
+	Set Variable [ $howtouse ; Value: ¶ & "How to use: ¶ Script is portable without dependencies. Copy into any solution and run. Add shift key when running to clear resulting vars. Clear the $expert var to suppress this extensive help text. It is under settings within the script. My workfl…" ]
 	# 
 End If
 # 
 # define footer
-Set Variable [ $footer ; Value: ¶ & "Report does not include <<Merge Fields>>." & ¶ ] 
+Set Variable [ $footer ; Value: ¶ & "Report does not include <<Merge Fields>>." & ¶ ]
 # 
 # build report
-Set Variable [ $database ; Value: Get ( FileName ) ] 
-Set Variable [ $report ; Value: $notice & "@" & Right ( "00" &    Hour ( Get(CurrentHostTimestamp ) ); 2 ) & ":" & Right ( "00" &  Minute ( Get(CurrentHostTimestamp ) ); 2 ) & ":" & Right ( "00" & Seconds ( Get(CurrentHostTimestamp ) ); 2 ) & ¶ & ¶ & "#DB: " & $database & ¶ ] 
-Set Variable [ $layoutname ; Value: Get ( LayoutName ) ] 
-Set Variable [ $tableoccurrence ; Value: Get (LayoutTableName) ] 
-Set Variable [ $tableoccurrencelength ; Value: Length ( $tableoccurrence ) ] 
-Set Variable [ $totalrecordcount ; Value: Get ( TotalRecordCount ) ] 
-Set Variable [ $report ; Value: $report & "#LN: " & $layoutname  & ¶ & "#TO: " & $tableoccurrence & ¶ & ¶ ] 
+Set Variable [ $database ; Value: Get ( FileName ) ]
+Set Variable [ $report ; Value: $notice & "@" & Right ( "00" &    Hour ( Get(CurrentHostTimestamp ) ); 2 ) & ":" & Right ( "00" &  Minute ( Get(CurrentHostTimestamp ) ); 2 ) & ":" & Right ( "00" & Seconds ( Get(CurrentHostTimestamp ) ); 2 ) & ¶ & ¶ & "#DB: " & $database & ¶ ]
+Set Variable [ $layoutname ; Value: Get ( LayoutName ) ]
+Set Variable [ $tableoccurrence ; Value: Get (LayoutTableName) ]
+Set Variable [ $tableoccurrencelength ; Value: Length ( $tableoccurrence ) ]
+Set Variable [ $totalrecordcount ; Value: Get ( TotalRecordCount ) ]
+Set Variable [ $report ; Value: $report & "#LN: " & $layoutname  & ¶ & "#TO: " & $tableoccurrence & ¶ & ¶ ]
 # get fields list
-Set Variable [ $fieldlist ; Value: SortValues ( FieldNames ( $database; $layoutname ) ) ] 
+Set Variable [ $fieldlist ; Value: SortValues ( FieldNames ( $database; $layoutname ) ) ]
 # set the list count
-Set Variable [ $fieldlistcount ; Value: ValueCount ( $fieldlist ) ] 
-Set Variable [ $report ; Value: $report // & Case ( $totalrecordcount = 0; "Zero"; " " & $totalrecordcount ) & $totalrecordcount & " Total Record Count." & ¶ & ¶ & $fieldlistcount & Case ( $fieldlistcount = 1; " Regular Field "; " Regular Fields " ) & "found on layout." & ¶ & ¶ ] 
+Set Variable [ $fieldlistcount ; Value: ValueCount ( $fieldlist ) ]
+Set Variable [ $report ; Value: $report // & Case ( $totalrecordcount = 0; "Zero"; " " & $totalrecordcount ) & $totalrecordcount & " Total Record Count." & ¶ & ¶ & $fieldlistcount & Case ( $fieldlistcount = 1; " Regular Field "; " Regular Fields " ) & "found on the visble layout and… ]
 # set padding var for numeric right alignment
-Set Variable [ $padding ; Value: "               " // ten spaces ] 
+Set Variable [ $padding ; Value: "               " // ten spaces ]
 # get first field and if more than one, loop through them.
-If [ $fieldlistcount = 0 ] 
-	Set Variable [ $report ; Value: $report & "No fields present on layout" ] 
-	Show Custom Dialog [ "Show report" ; $report ] 
-	Exit Script [ Text Result: $null ] 
+If [ $fieldlistcount = 0 ]
+	Set Variable [ $report ; Value: $report & "No fields present on layout" ]
+	Show Custom Dialog [ "Show report" ; $report ]
+	Exit Script [ Text Result: $null ]
 Else
-	Set Variable [ $i ; Value: 1 ] 
+	Set Variable [ $i ; Value: 1 ]
 	# set spacer max length
 	Loop [ Flush: Always ]
-		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ] 
-		Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-		Set Variable [ $spacermax ; Value: Case ( $fieldlength > $spacermax; $fieldlength; $spacermax ) ] 
-		Set Variable [ $i ; Value: $i + 1 ] 
-		Exit Loop If [ $i > $fieldlistcount ] 
+		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ]
+		Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+		Set Variable [ $spacermax ; Value: Case ( $fieldlength > $spacermax; $fieldlength; $spacermax ) ]
+		Set Variable [ $i ; Value: $i + 1 ]
+		Exit Loop If [ $i > $fieldlistcount ]
 	End Loop
-	Set Variable [ $spacermax ; Value: Left ( "                                                                                                                                                      "; $spacermax + 8 ) ] 
-	Set Variable [ $spacermaxlength ; Value: Length ( $spacermax ) ] 
+	Set Variable [ $spacermax ; Value: Left ( "                                                                                                                                                      "; $spacermax + 8 ) ]
+	Set Variable [ $spacermaxlength ; Value: Length ( $spacermax ) ]
 	# see if any field comments exist. If not, skip.
-	Set Variable [ $i ; Value: 1 ] 
+	Set Variable [ $i ; Value: 1 ]
 	Loop [ Flush: Always ]
-		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ] 
-		Set Variable [ $field ; Value: FieldComment ( $database; $field ) ] 
-		Set Variable [ $i ; Value: $i + 1 ] 
-		Exit Loop If [ $i > $fieldlistcount ] 
-		If [ $field > "" // At least one Field Comment exists so show them. ] 
-			Set Variable [ $i ; Value: 1 ] 
-			Set Variable [ $report ; Value: $report & "FieldComment" & ¶ ] 
+		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ]
+		Set Variable [ $field ; Value: FieldComment ( $database; $field ) ]
+		Set Variable [ $i ; Value: $i + 1 ]
+		Exit Loop If [ $i > $fieldlistcount ]
+		If [ $field > "" // At least one Field Comment exists so show them. ]
+			Set Variable [ $i ; Value: 1 ]
+			Set Variable [ $report ; Value: $report & "FieldComment" & ¶ ]
 			# loop through fields to get basic info: FN and FComment
-			Set Variable [ $i ; Value: 1 ] 
+			Set Variable [ $i ; Value: 1 ]
 			Loop [ Flush: Always ]
-				Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ] 
-				Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-				Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ] 
-				Set Variable [ $field ; Value: $field & $spacer & FieldComment ( $database; $field ) ] 
-				Set Variable [ $report ; Value: $report & $field & ¶ ] 
-				Set Variable [ $i ; Value: $i + 1 ] 
-				Exit Loop If [ $i > $fieldlistcount ] 
+				Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ]
+				Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+				Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ]
+				Set Variable [ $field ; Value: $field & $spacer & FieldComment ( $database; $field ) ]
+				Set Variable [ $report ; Value: $report & $field & ¶ ]
+				Set Variable [ $i ; Value: $i + 1 ]
+				Exit Loop If [ $i > $fieldlistcount ]
 			End Loop
 		End If
 	End Loop
 	# add note if FieldComment section omitted
-	If [ PatternCount ( $report; "FieldComment" ) ≠ 1 // not present ] 
-		Set Variable [ $report ; Value: $report & "FieldComment" & ¶ & "(No fields on layout have comments.)" & ¶ ] 
+	If [ PatternCount ( $report; "FieldComment" ) ≠ 1 // not present ]
+		Set Variable [ $report ; Value: $report & "FieldComment" & ¶ & "(No fields on layout have comments.)" & ¶ ]
 	End If
 	# loop though fields to get FileType
-	Set Variable [ $report ; Value: $report & ¶ & "FieldType" & ¶ ] 
-	Set Variable [ $report ; Value: Substitute ( $report; "¶¶¶"; "¶¶" ) // lazy fix for an error in processing ] 
-	Set Variable [ $i ; Value: 1 ] 
+	Set Variable [ $report ; Value: $report & ¶ & "FieldType" & ¶ ]
+	Set Variable [ $report ; Value: Substitute ( $report; "¶¶¶"; "¶¶" ) // lazy fix for an error in processing ]
+	Set Variable [ $i ; Value: 1 ]
 	Loop [ Flush: Always ]
-		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ] 
-		Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-		Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ] 
-		Set Variable [ $field ; Value: $field & $spacer & Left ( LeftWords ( FieldType ( $database; $field ) ; 1 ) & $padding; 16 )      // Handle padding for 1st value. (Standard, StoredCalc, Summary, UnstoredCalc, External(Secure), External(Open), or Global) & Left ( MiddleWords ( FieldTy… ] 
-		Set Variable [ $report ; Value: $report & $field & ¶ ] 
-		Set Variable [ $i ; Value: $i + 1 ] 
-		Exit Loop If [ $i > $fieldlistcount ] 
+		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ]
+		Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+		Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ]
+		Set Variable [ $field ; Value: $field & $spacer & Left ( LeftWords ( FieldType ( $database; $field ) ; 1 ) & $padding; 16 )      // Handle padding for 1st value. (Standard, StoredCalc, Summary, UnstoredCalc, External(Secure), External(Open), or Global) & Left ( MiddleWords ( FieldTy… ]
+		Set Variable [ $report ; Value: $report & $field & ¶ ]
+		Set Variable [ $i ; Value: $i + 1 ]
+		Exit Loop If [ $i > $fieldlistcount ]
 	End Loop
 	# loop through fields to get FileStyle
-	Set Variable [ $report ; Value: $report & ¶ & "FieldStyle +Value Lists" & ¶ ] 
-	Set Variable [ $i ; Value: 1 ] 
+	Set Variable [ $report ; Value: $report & ¶ & "FieldStyle +Value Lists" & ¶ ]
+	Set Variable [ $i ; Value: 1 ]
 	Loop [ Flush: Always ]
-		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ] 
-		Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-		Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ] 
-		Set Variable [ $field ; Value: $field & $spacer & Left( LeftWords ( FieldStyle ( $database; $layoutname; $field ); 1 ) & $spacer; 16 ) & MiddleWords ( FieldStyle ( $database; $layoutname; $field ); 2; 25 ) ] 
-		Set Variable [ $report ; Value: $report & $field & ¶ ] 
-		Set Variable [ $i ; Value: $i + 1 ] 
-		Exit Loop If [ $i > $fieldlistcount ] 
+		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ]
+		Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+		Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ]
+		Set Variable [ $field ; Value: $field & $spacer & Left( LeftWords ( FieldStyle ( $database; $layoutname; $field ); 1 ) & $spacer; 16 ) & MiddleWords ( FieldStyle ( $database; $layoutname; $field ); 2; 25 ) ]
+		Set Variable [ $report ; Value: $report & $field & ¶ ]
+		Set Variable [ $i ; Value: $i + 1 ]
+		Exit Loop If [ $i > $fieldlistcount ]
 	End Loop
 	# loop through fields to get FieldBounds
-	Set Variable [ $field ; Value: "FieldBounds" ] 
-	Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-	Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ] 
-	Set Variable [ $report ; Value: $report & ¶ & $field & $spacer & Right ( $padding &   LeftWords ( "l t r b deg" ; 1 )   ; 6 ) // Handle padding for 1st number. (Left) & Right ( $padding & MiddleWords ( "l t r b deg" ; 2; 1 ); 6 ) // Handle padding for 2nd number. (Top) & Right ( $pa… ] 
-	Set Variable [ $i ; Value: 1 ] 
+	Set Variable [ $field ; Value: "FieldBounds" ]
+	Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+	Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ]
+	Set Variable [ $report ; Value: $report & ¶ & $field & $spacer & Right ( $padding &   LeftWords ( "l t r b deg" ; 1 )   ; 6 ) // Handle padding for 1st number. (Left) & Right ( $padding & MiddleWords ( "l t r b deg" ; 2; 1 ); 6 ) // Handle padding for 2nd number. (Top) & Right ( $pa… ]
+	Set Variable [ $i ; Value: 1 ]
 	Loop [ Flush: Always ]
-		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ] 
-		Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-		Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ] 
-		Set Variable [ $field ; Value: $field & $spacer & Right ( $padding &   LeftWords ( FieldBounds ( $database; $layoutname; $field ) ; 1 )   ; 6 ) // Handle padding for 1st number. (Left) & Right ( $padding & MiddleWords ( FieldBounds ( $database; $layoutname; $field ) ; 2; 1 ); 6 ) // … ] 
-		Set Variable [ $report ; Value: $report & $field & ¶ ] 
-		Set Variable [ $i ; Value: $i + 1 ] 
-		Exit Loop If [ $i > $fieldlistcount ] 
+		Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ]
+		Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+		Set Variable [ $spacer ; Value: Left ( $spacermax; $spacermaxlength - $fieldlength ) ]
+		Set Variable [ $field ; Value: $field & $spacer & Right ( $padding &   LeftWords ( FieldBounds ( $database; $layoutname; $field ) ; 1 )   ; 6 ) // Handle padding for 1st number. (Left) & Right ( $padding & MiddleWords ( FieldBounds ( $database; $layoutname; $field ) ; 2; 1 ); 6 ) // … ]
+		Set Variable [ $report ; Value: $report & $field & ¶ ]
+		Set Variable [ $i ; Value: $i + 1 ]
+		Exit Loop If [ $i > $fieldlistcount ]
 	End Loop
 	# loop through fields to get Source Table
 	# Determine if any external fields exist on this table
-	If [ Position ( $fieldlist ; "::" ; 1 ; 1 ) ] 
+	If [ Position ( $fieldlist ; "::" ; 1 ; 1 ) ]
 		# isolate field name without TO to get just the field length => $maxlength2
-		Set Variable [ $i ; Value: 1 ] 
+		Set Variable [ $i ; Value: 1 ]
 		Loop [ Flush: Always ]
-			Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ] 
+			Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ]
 			# remove TO
-			Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-			If [ Position ( $field ; "::" ; 1 ; 1 ) > 0 // PatternCount ( $field; "::" ) = 1 ] 
-				Set Variable [ $position ; Value: Position ( $field ; ":" ; 1 ; 2 ) ] 
-				Set Variable [ $field ; Value: Right ( $field; $fieldlength - $position ) //Middle ( $field; $position; $fieldlength - $position ) ] 
+			Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+			If [ Position ( $field ; "::" ; 1 ; 1 ) > 0 // PatternCount ( $field; "::" ) = 1 ]
+				Set Variable [ $position ; Value: Position ( $field ; ":" ; 1 ; 2 ) ]
+				Set Variable [ $field ; Value: Right ( $field; $fieldlength - $position ) //Middle ( $field; $position; $fieldlength - $position ) ]
 			End If
-			Set Variable [ $fieldlist2 ; Value: $fieldlist2 & ¶ & $field ] 
-			Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
+			Set Variable [ $fieldlist2 ; Value: $fieldlist2 & ¶ & $field ]
+			Set Variable [ $fieldlength ; Value: Length ( $field ) ]
 			# goal of this loop is simply to get the max length field of list
-			Set Variable [ $spacermax2 ; Value: Case ( $fieldlength > $spacermax2; $fieldlength; $spacermax2 ) ] 
-			Set Variable [ $i ; Value: $i + 1 ] 
-			Exit Loop If [ $i > $fieldlistcount ] 
+			Set Variable [ $spacermax2 ; Value: Case ( $fieldlength > $spacermax2; $fieldlength; $spacermax2 ) ]
+			Set Variable [ $i ; Value: $i + 1 ]
+			Exit Loop If [ $i > $fieldlistcount ]
 		End Loop
 		# isolate TO to get just the length => $maxlength3
-		Set Variable [ $i ; Value: 1 ] 
+		Set Variable [ $i ; Value: 1 ]
 		Loop [ Flush: Always ]
-			Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ] 
+			Set Variable [ $field ; Value: GetValue ( $fieldlist; $i ) ]
 			# remove TO
-			Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-			If [ Position ( $field ; "::" ; 1 ; 1 ) > 0 //PatternCount ( $field; "::" ) = 1 ] 
-				Set Variable [ $position ; Value: Position ( $field ; ":" ; 1 ; 2 ) //Position ( text ; searchString ; start ; occurrence ) ] 
-				Set Variable [ $field ; Value: Left ( $field; $position ) //Middle ( $field; $position; $fieldlength - $position )  ] 
-				Set Variable [ $fieldlist3 ; Value: $fieldlist3 & ¶ & $field ] 
+			Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+			If [ Position ( $field ; "::" ; 1 ; 1 ) > 0 //PatternCount ( $field; "::" ) = 1 ]
+				Set Variable [ $position ; Value: Position ( $field ; ":" ; 1 ; 2 ) //Position ( text ; searchString ; start ; occurrence ) ]
+				Set Variable [ $field ; Value: Left ( $field; $position ) //Middle ( $field; $position; $fieldlength - $position )  ]
+				Set Variable [ $fieldlist3 ; Value: $fieldlist3 & ¶ & $field ]
 			Else
-				Set Variable [ $field ; Value: $tableoccurrence ] 
-				Set Variable [ $fieldlist3 ; Value: $fieldlist3 & ¶ & $field ] 
+				Set Variable [ $field ; Value: $tableoccurrence ]
+				Set Variable [ $fieldlist3 ; Value: $fieldlist3 & ¶ & $field ]
 			End If
-			// Set Variable [ $report ; Value: $report  & $field & ¶ ] 
-			Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
+			// Set Variable [ $report ; Value: $report  & $field & ¶ ]
+			Set Variable [ $fieldlength ; Value: Length ( $field ) ]
 			# goal of this loop is simply to get the max length field (TO) of list
-			Set Variable [ $spacermax3 ; Value: Case ( $fieldlength > $spacermax3; $fieldlength; $spacermax3 ) ] 
-			Set Variable [ $i ; Value: $i + 1 ] 
-			Exit Loop If [ $i > $fieldlistcount ] 
+			Set Variable [ $spacermax3 ; Value: Case ( $fieldlength > $spacermax3; $fieldlength; $spacermax3 ) ]
+			Set Variable [ $i ; Value: $i + 1 ]
+			Exit Loop If [ $i > $fieldlistcount ]
 		End Loop
 	End If
 	# do the report section
-	Set Variable [ $field ; Value: "Field" ] 
-	Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-	Set Variable [ $spacer ; Value: Left ( $spacermax2; $spacermaxlength2 - $fieldlength ) ] 
-	Set Variable [ $padding ; Value: "  " ] 
-	Set Variable [ $report ; Value: $report & ¶ & $field  & "/Table Occurrence"   // Handle padding for 2nd column. (Table Occurrence) & "/BaseTableName or Source Table" // Handle padding for 3nd column. (Base Table Name) // & Right ( $padding &   LeftWords ( "TO" ; 1 )   ; 6 )   // Hand… ] 
-	// Set Variable [ $report ; Value: $report & ¶ & $field & $spacer & Right ( $padding &   LeftWords ( "l t r b deg" ; 1 )   ; 6 ) // Handle padding for 1st number. (Left) & Right ( $padding & MiddleWords ( "l t r b deg" ; 2; 1 ); 6 ) // Handle padding for 2nd number. (Top) & Right ( $pa… ] 
+	Set Variable [ $field ; Value: "Field" ]
+	Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+	Set Variable [ $spacer ; Value: Left ( $spacermax2; $spacermaxlength2 - $fieldlength ) ]
+	Set Variable [ $padding ; Value: "  " ]
+	Set Variable [ $report ; Value: $report & ¶ & $field  & "/Table Occurrence"   // Handle padding for 2nd column. (Table Occurrence) & "/BaseTableName or Source Table" // Handle padding for 3nd column. (Base Table Name) // & Right ( $padding &   LeftWords ( "TO" ; 1 )   ; 6 )   // Hand… ]
+	// Set Variable [ $report ; Value: $report & ¶ & $field & $spacer & Right ( $padding &   LeftWords ( "l t r b deg" ; 1 )   ; 6 ) // Handle padding for 1st number. (Left) & Right ( $padding & MiddleWords ( "l t r b deg" ; 2; 1 ); 6 ) // Handle padding for 2nd number. (Top) & Right ( $pa… ]
 	# SPACING NEEDS FIXED ON THE HEADING
 	# now create the actual list into fieldlistto from the gathered fieldlist2 and fieldlist3 and use SQL to get the base table name for each
-	Set Variable [ $i ; Value: 1 ] 
+	Set Variable [ $i ; Value: 1 ]
 	Loop [ Flush: Always ]
-		Set Variable [ $field ; Value: GetValue ( $fieldlist2; $i ) ] 
-		Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-		Set Variable [ $spacer ; Value: Left ( "                           "; $spacermax2 - $fieldlength ) & $padding ] 
-		Set Variable [ $field ; Value: $field & $spacer ] 
+		Set Variable [ $field ; Value: GetValue ( $fieldlist2; $i ) ]
+		Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+		Set Variable [ $spacer ; Value: Left ( "                           "; $spacermax2 - $fieldlength ) & $padding ]
+		Set Variable [ $field ; Value: $field & $spacer ]
 		# hold that thought
-		Set Variable [ $temp ; Value: $field ] 
+		Set Variable [ $temp ; Value: $field ]
 		# handle second column
-		Set Variable [ $field ; Value: GetValue ( $fieldlist3; $i ) ] 
-		Set Variable [ $fieldlength ; Value: Length ( $field ) ] 
-		Set Variable [ $spacer ; Value: Left ( "                           "; $spacermax3 - $fieldlength ) & $padding ] 
-		Set Variable [ $field ; Value: $temp & $field & $spacer ] 
+		Set Variable [ $field ; Value: GetValue ( $fieldlist3; $i ) ]
+		Set Variable [ $fieldlength ; Value: Length ( $field ) ]
+		Set Variable [ $spacer ; Value: Left ( "                           "; $spacermax3 - $fieldlength ) & $padding ]
+		Set Variable [ $field ; Value: $temp & $field & $spacer ]
 		# add this thought
-		Set Variable [ $temp ; Value: $field ] 
+		Set Variable [ $temp ; Value: $field ]
 		# handle last column, list the source table
-		Set Variable [ $brian ; Value: Let ( [           f3 = GetValue ( $fieldlist3; $i )         ; f2 = GetValue ( $fieldlist2; $i )         ; f1 = "::"       ]       ; Case ( 				PatternCount ( f3; f1 ) = 1 						; f3 & f2 						; f3 & f1 & f2 )  ) //Position ( text ; searchString ; star… ] 
+		Set Variable [ $brian ; Value: Let ( [           f3 = GetValue ( $fieldlist3; $i )         ; f2 = GetValue ( $fieldlist2; $i )         ; f1 = "::"       ]       ; Case ( 				PatternCount ( f3; f1 ) = 1 						; f3 & f2 						; f3 & f1 & f2 )  ) //Position ( text ; searchString ; star… ]
 		# fix field. (this could have been done better)
-		Set Variable [ $field ; Value: Substitute ( GetValue ( $fieldlist3; $i ); "::"; "" ) ] 
+		Set Variable [ $field ; Value: Substitute ( GetValue ( $fieldlist3; $i ); "::"; "" ) ]
 		# get the base table name // yes, this should be updated to GetBaseTableName since 19.6 I believe. - Brian
-		Set Variable [ $field ; Value: ExecuteSQL (	"SELECT BaseTableName 			FROM FileMaker_Tables 			WHERE TableName=" & "'" & $field & "'" ; 			"" ; 			"" 		 ) ] 
-		Set Variable [ $temp ; Value: $temp & $field ] 
-		Set Variable [ $fieldlistto ; Value: $fieldlistto & $temp // & "  [end]" & "¶" ] 
-		Set Variable [ $i ; Value: $i + 1 ] 
-		Exit Loop If [ $i > $fieldlistcount + 1 ] 
+		Set Variable [ $field ; Value: ExecuteSQL (	"SELECT BaseTableName 			FROM FileMaker_Tables 			WHERE TableName=" & "'" & $field & "'" ; 			"" ; 			"" 		 ) ]
+		Set Variable [ $temp ; Value: $temp & $field ]
+		Set Variable [ $fieldlistto ; Value: $fieldlistto & $temp // & "  [end]" & "¶" ]
+		Set Variable [ $i ; Value: $i + 1 ]
+		Exit Loop If [ $i > $fieldlistcount + 1 ]
 	End Loop
 	# then sort the resulting fieldlistto by field name
-	Set Variable [ $fieldlistto ; Value: SortValues ( $fieldlistto ) ] 
+	Set Variable [ $fieldlistto ; Value: SortValues ( $fieldlistto ) ]
 	# next add fieldlistto to report var
-	Set Variable [ $report ; Value: $report & $fieldlistto ] 
+	Set Variable [ $report ; Value: $report & $fieldlistto ]
 End If
 # 
 # append FieldType definition
-Set Variable [ $report ; Value: $report & $definefieldtype ] 
+Set Variable [ $report ; Value: $report & $definefieldtype ]
 # 
 # append FieldStyle definition
-Set Variable [ $report ; Value: $report & $definefieldstyle ] 
+Set Variable [ $report ; Value: $report & $definefieldstyle ]
 # 
 # append FieldBounds definition
-Set Variable [ $report ; Value: $report & $definefieldbounds ] 
+Set Variable [ $report ; Value: $report & $definefieldbounds ]
 # 
 # append How to Use
-Set Variable [ $report ; Value: $report & $howtouse ] 
+Set Variable [ $report ; Value: $report & $howtouse ]
 # 
 # add script name that created report
-Set Variable [ $report ; Value: $report & $footer ] 
+Set Variable [ $report ; Value: $report & $footer ]
 # 
 # set this script name
-Set Variable [ $report ; Value: $report & $scriptname & ¶ & "Set $expert in setting to toggle helper information." & ¶ & "Hold shift key while running script to clear globals." ] 
+Set Variable [ $report ; Value: $report & $scriptname & ¶ & "Set $expert in setting to toggle helper information." & ¶ & "Hold shift key while running script to clear globals." ]
 # 
 # make it a unix comment
-Set Variable [ $report ; Value: "/*¶" & $report & "¶*/" ] 
+Set Variable [ $report ; Value: "/*¶" & $report & "¶*/" ]
 # 
 # Danger Will Robinson
 # clear all dynamically created globals with shift key that were possibly created earlier
-If [ Get(ActiveModifierKeys) = 1 ] 
-	Set Variable [ $i ; Value: 0 ] 
+If [ Get(ActiveModifierKeys) = 1 ]
+	Set Variable [ $i ; Value: 0 ]
 	Loop [ Flush: Always ]
-		Set Variable [ $$report[$i] ; Value: "" ] 
-		Set Variable [ $i ; Value: $i + 1 ] 
-		Exit Loop If [ $i > 60 ] 
+		Set Variable [ $$report[$i] ; Value: "" ]
+		Set Variable [ $i ; Value: $i + 1 ]
+		Exit Loop If [ $i > 60 ]
 	End Loop
-	Set Variable [ $$report ; Value: "" ] 
-	Set Variable [ $report ; Value: "" ] 
-	Exit Script [ Text Result:    ] 
+	Set Variable [ $$report ; Value: "" ]
+	Set Variable [ $report ; Value: "" ]
+	Exit Script [ Text Result:    ]
 End If
-Set Variable [ $$report[$seconds] ; Value: $report ] 
-Exit Script [ Text Result: $null ] 
+Set Variable [ $$report[$seconds] ; Value: $report ]
+Exit Script [ Text Result: $null ]
 # 
