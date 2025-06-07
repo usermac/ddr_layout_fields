@@ -79,7 +79,7 @@
  * If you can't contact me using brian@brianginn.com, use usermac@mac.com or text me direct +1(502)550-0092 - Brian
 */
 
- ➜🌎 
+
 # 
 Allow User Abort [ On ]
 # 
@@ -144,7 +144,7 @@ Set Variable [ $scriptname ; Value: ¶ & "Script: " & Get (ScriptName) ]
 Set Variable [ $seconds ; Value: Seconds ( Get (CurrentTime ) ) ]
 # 
 # Help on/off with $expert
-If [ $expert = "" // don't show help such as what function settings are. Change this to anything greater than null/blank and you'll suppress help. ]
+If [ $expert = "" // Show help only when $expert is empty. To suppress help, set $expert to any non-empty value.  ]
 	Set Variable [ $notice ; Value: "'Add to Watch' for Unix-formatted rpt. Hold shift key while running script to clear globals." & ¶ & "Clear $expert in script setting to hide introductory instructions and helpful information." & ¶ ]
 	# 
 	# define FieldType
